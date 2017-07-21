@@ -20,7 +20,7 @@ The code repository contains a folder of static files called, oddly enough, "sta
 ## Example 1: Bodiless Drupal with a simple text file
 
 - **Module:** ex1_flatfile
-- **URL:** http://<drupal_www>/ex1_flatfile
+- **URL:** http://[drupal_www]/ex1_flatfile
 
 This example demonstrates a Drupal page which renders content stored in an external text file. All functional features of Drupal are available and may be used, with the exception of the database.
 
@@ -36,7 +36,7 @@ sample.txt.
 ## Example 2: Bodiless Drupal with a JSON file
 
 - **Module:** ex2_jsonfile
-- **URL:** http://<drupal_www>/ex2_jsonfile
+- **URL:** http://[drupal_www]/ex2_jsonfile
 
 This example demonstrates a Drupal page which renders content stored in an external JSON file. All functional features of Drupal are available and may be used, with the exception of the database.
 
