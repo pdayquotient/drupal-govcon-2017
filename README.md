@@ -49,3 +49,31 @@ on Line 6 of modules/custom/ex2_jsonfile/ex2_jsonfile.routing.yml
 so that it contains the full path and filename to where you put
 sample.json.
 ```
+
+## Example 3: Bodiless Drupal with an external MySQL database
+
+- **Module:** ex3_mysql
+- **URL:** http://[drupal_www]/ex3_mysql
+
+This example demonstrates a Drupal page which renders content stored in an external MySQL database. All functional features of Drupal are available and may be used, with the exception of the database.
+
+```
+Before installing the module
+----------------------------
+You will need to modify your settings.php configuration file to
+register your external MySQL database. I have created a sample
+MySQL database on http://www.db4free.net using the following
+credentials (There is no guarantee this service will be available
+so there is also a mysql dump of the sample data in the static_files
+folder.):
+
+$databases['govcon']['default'] = array(
+  'database' => 'bodiless2017',
+  'username' => 'bodiless2017',
+  'password' => 'bodiless2017',
+  'host' => 'db4free.net',
+  'port' => '3306',
+  'driver' => 'mysql',
+  'prefix' => '',
+  'collaction' => 'utf8mb4_general_ci',
+);
