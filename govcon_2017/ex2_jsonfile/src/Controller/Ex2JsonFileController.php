@@ -24,9 +24,7 @@ class Ex2JsonFileController extends ControllerBase {
       $output = "";
       $file_contents = file_get_contents($path);
       $json = json_decode($file_contents);
-      \Drupal::logger('paul')->notice('JSON: ' . print_r($json, true));
       foreach ($json->data as $people => $person) {
-        \Drupal::logger('paul')->notice('PERSON: ' . print_r($person, true));
         $output .= "<p>Hi, my name is <strong>" . $person->fname . " " . $person->lname . "</strong>!<br>";
         $output .= "My Person ID is <strong>" . $person->id . "</strong> and I can be contacted at: ";
         $output .= "<strong><a href=\"mailto:" . $person->email . "\">" . $person->email . "</a></strong></p>";
