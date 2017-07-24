@@ -62,16 +62,15 @@ Before installing the module
 ----------------------------
 You will need to modify your settings.php configuration file to
 register your external MySQL database. I have created a sample
-MySQL database on http://www.db4free.net using the following
-credentials (There is no guarantee this service will be available
-so there is also a mysql dump of the sample data in the static_files
-folder.):
+MySQL database using the following credentials (There is no guarantee
+this service will be available so there is also a mysql dump of the
+sample data in the static_files folder.):
 
 $databases['govcon']['default'] = array(
-  'database' => 'bodiless2017',
-  'username' => 'bodiless2017',
-  'password' => 'bodiless2017',
-  'host' => 'db4free.net',
+  'database' => 'sql9186964',
+  'username' => 'sql9186964',
+  'password' => 'qEEXa1Ue6K',
+  'host' => 'sql9.freemysqlhosting.net',
   'port' => '3306',
   'driver' => 'mysql',
   'prefix' => '',
