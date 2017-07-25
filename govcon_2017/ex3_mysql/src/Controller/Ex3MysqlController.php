@@ -3,7 +3,7 @@
 namespace Drupal\ex3_mysql\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use \Drupal\Core\Database\Database;
+use Drupal\Core\Database\Database;
 
 class Ex3MysqlController extends ControllerBase {
 
