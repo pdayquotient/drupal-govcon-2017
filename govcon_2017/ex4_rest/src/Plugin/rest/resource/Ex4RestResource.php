@@ -37,23 +37,35 @@ class Ex4RestResource extends ResourceBase {
   public function get($id = NULL) {
     if ($id) {
       // Use the external database
-      Database::setActiveConnection('govcon');
-      $connection = Database::getConnection();
-      $sth = $connection->select('users', 'u')
-        ->fields([
-          'id',
-          'fname',
-          'lname',
-          'email',
-        ])
-        ->condition('u.id', $id);
-      $data = $sth->execute();
-      $result = $data->fetchAssoc(\PDO::FETCH_OBJ);
-      if (!empty($result)) {
-        return new ResourceResponse($result);
-      }
+      try {
+        Database::setActiveConnection('govcon');
+        $connection = Database::getConnection();
+        $sth = $connection->select('users', 'u')
+          ->fields([
+            'id',
+            'fname',
+            'lname',
+            'email',
+          ])
+          ->condition('u.id', $id);
+        $data = $sth->execute();
+        $result = $data->fetchAssoc(\PDO::FETCH_OBJ);
+        if (!empty($result)) {
+          return new ResourceResponse($result);
+        }
 
-      throw new NotFoundHttpException($this->t('User with ID ' . $id . ' was not found'));
+        throw new NotFoundHttpException($this->t('User with ID ' . $id . ' was not found'));
+      }
+      catch (\Exception $e) {
+        return new ResourceResponse($e);
+      }
+      catch (\PDOException $e) {
+        return new ResourceResponse($e);
+      }
+      finally {
+        // Switch back to the internal database
+        Database::setActiveConnection();
+      }
     }
 
     throw new BadRequestHttpException($this->t('No user ID was provided'));
