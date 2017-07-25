@@ -76,3 +76,4 @@ $databases['govcon']['default'] = array(
   'prefix' => '',
   'collaction' => 'utf8mb4_general_ci',
 );
+```
