@@ -21,7 +21,7 @@ class Ex3MysqlController extends ControllerBase {
       Database::setActiveConnection('govcon');
       $connection = Database::getConnection();
       $sth = $connection->select('users', 'u')
-        ->fields([
+        ->fields('u', [
           'id',
           'fname',
           'lname',

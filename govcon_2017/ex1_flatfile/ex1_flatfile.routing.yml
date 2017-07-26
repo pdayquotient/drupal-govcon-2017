@@ -3,6 +3,6 @@ ex1_flatfile.read:
   defaults:
     _title: 'Example 1: Processing an external txt file'
     _controller: '\Drupal\ex1_flatfile\Controller\Ex1FlatFileController::content'
-    path: 'C:/projects/govcon_2017_flat_files/Example1/sample.txt'
+    path: 'C:/projects/govcon_2017_flat_files/sample.txt'
   requirements:
     _permission: 'access content'

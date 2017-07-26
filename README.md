@@ -61,16 +61,15 @@ This example demonstrates a Drupal page which renders content stored in an exter
 Before installing the module
 ----------------------------
 You will need to modify your settings.php configuration file to
-register your external MySQL database. I have created a sample
-MySQL database using the following credentials (There is no guarantee
-this service will be available so there is also a mysql dump of the
-sample data in the static_files folder.):
+register your external MySQL database. Execute the mysql dump of
+the sample data in the static_files folder to create the table
+and insert the sample data.
 
 $databases['govcon']['default'] = array(
-  'database' => 'sql9186964',
-  'username' => 'sql9186964',
-  'password' => 'qEEXa1Ue6K',
-  'host' => 'sql9.freemysqlhosting.net',
+  'database' => 'your_db_name',
+  'username' => 'your_db_user',
+  'password' => 'your_db_pass',
+  'host' => 'your_db_host',
   'port' => '3306',
   'driver' => 'mysql',
   'prefix' => '',
@@ -78,13 +77,71 @@ $databases['govcon']['default'] = array(
 );
 ```
 
-## Example 4: TBD
+## Example 4: Create a RESTful API endpoint to retrieve external data
 
-- **Module:** ex4_mysql
-- **URL:** http://[drupal_www]/ex4_mysql
+- **Module:** ex4_rest
+- **URL:** http://[nodejs_www]/app.js
 
-This example demonstrates ...
+This example demonstrates how you can use Drupal in a bodiless AND headless way. Drupal provides the RESTful API endpoint to retrieve data from an external MySQL database. The sample node.js application is the front end which consumes the Drupal RESTful API endpoint via a GET call.
 
+### Prerequisites
+
+- node.js
+
+```
+Before installing the module
+----------------------------
+1. Ensure you have enabled the RESTful Web Services module.
+
+2. Install the HTTP Basic Authentication module.
+
+2. Download and install the REST UI module:
+https://www.drupal.org/project/restui
+
+3. You will need to modify your settings.php configuration file
+to register your external MySQL database. Execute the mysql dump
+of the sample data in the static_files folder to create the table
+and insert the sample data. You may skip this if you have alreay
+completed it as part of Example 3.
+
+$databases['govcon']['default'] = array(
+  'database' => 'your_db_name',
+  'username' => 'your_db_user',
+  'password' => 'your_db_pass',
+  'host' => 'your_db_host',
+  'port' => '3306',
+  'driver' => 'mysql',
+  'prefix' => '',
+  'collaction' => 'utf8mb4_general_ci',
+);
+```
+
+### Setup
+
+- Open the REST UI configuration page: /admin/config/services/rest
+- Scroll down to "External data resource"
+- Click the "Enable" button
+- Settings:
+  - Granularity: Resource
+  - Methods: GET (tick the checkbox)
+  - Accepted request formats: json (tick the checkbox)
+  - Authentication providers: basic_auth (tick the checkbox)
+  - Submit configuration
+- Go to the Permissions management page: /admin/people/permissions
+- Scroll down to "Access GET on External data resource resource", under RESTful Web Services
+- Tick the checkbox under "Anonymous User"
+- Save permissions
+- Copy the app.js file under `node_js` to another location on your computer
+- Modify lines 16 & 17 of app.js to reflect your Drupal environment.
+- Execute the script: node app.js
+- Point your web browser at http://127.0.0.1:8081/
+- If you set up everything correctly, you should see the following output:
+
+GET result:
+
+{"id":"1","fname":"Paul","lname":"Day","email":"pday@quotient-inc.com"}
+
+Call completed
 
 ## Example 5: Auto-generate Drupal form based on a JSON schema
 
@@ -96,8 +153,10 @@ This example demonstrates using a JSON schema to auto-generate a Drupal form for
 ```
 Before installing the module
 ----------------------------
-This module does security horribly wrong- don't do this in production: 
-the text file containing JSON data (ex5-json-forms-article.json) is located in the module root.
+This module does security horribly wrong - don't do this in production!
+The text file containing JSON data (ex5-json-forms-article.json) is
+located in the module root.
 
-The purpose of this example is to illustrate the ease of modifying external data while adhering to a schema.
+The purpose of this example is to illustrate the ease of modifying
+external data while adhering to a schema.
 ```

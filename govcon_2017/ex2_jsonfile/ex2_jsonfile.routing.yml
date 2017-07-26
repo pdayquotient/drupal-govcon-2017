@@ -3,7 +3,7 @@ ex2_flatfile.read:
   defaults:
     _title: 'Example 2: Processing an external JSON file'
     _controller: '\Drupal\ex2_jsonfile\Controller\Ex2JsonFileController::content'
-    path: 'C:/projects/govcon_2017_flat_files/Example2/sample.json'
+    path: 'C:/projects/govcon_2017_flat_files/sample.json'
   requirements:
     _permission: 'access content'
 
@@ -12,6 +12,6 @@ ex2_flatfile.readjson:
   defaults:
     _title: 'Example 2: Returning JSON from flat file'
     _controller: '\Drupal\ex2_jsonfile\Controller\Ex2JsonFileController::jsonContent'
-    path: 'C:/projects/govcon_2017_flat_files/Example2/sample.json'
+    path: 'C:/projects/govcon_2017_flat_files/sample.json'
   requirements:
     _permission: 'access content'

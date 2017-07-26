@@ -12,8 +12,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  * Provides a resource for external user data.
  *
  * @RestResource(
- *   id = "ex4",
- *   label = @Translation("Sample external data"),
+ *   id = "ex4_rest",
+ *   label = @Translation("External data resource"),
  *   uri_paths = {
  *     "canonical" = "/ex4_rest/{id}"
  *   }
@@ -41,7 +41,7 @@ class Ex4RestResource extends ResourceBase {
         Database::setActiveConnection('govcon');
         $connection = Database::getConnection();
         $sth = $connection->select('users', 'u')
-          ->fields([
+          ->fields('u', [
             'id',
             'fname',
             'lname',
