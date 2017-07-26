@@ -77,3 +77,27 @@ $databases['govcon']['default'] = array(
   'collaction' => 'utf8mb4_general_ci',
 );
 ```
+
+## Example 4: TBD
+
+- **Module:** ex4_mysql
+- **URL:** http://[drupal_www]/ex4_mysql
+
+This example demonstrates ...
+
+
+## Example 5: Auto-generate Drupal form based on a JSON schema
+
+- **Module:** ex5_mysql
+- **URL:** http://[drupal_www]/admin/content/json_articles
+
+This example demonstrates using a JSON schema to auto-generate a Drupal form for data entry.
+
+```
+Before installing the module
+----------------------------
+This module does security horribly wrong- don't do this in production: 
+the text file containing JSON data (ex5-json-forms-article.json) is located in the module root.
+
+The purpose of this example is to illustrate the ease of modifying external data while adhering to a schema.
+```
