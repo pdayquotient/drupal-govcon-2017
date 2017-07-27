@@ -80,7 +80,7 @@ $databases['govcon']['default'] = array(
 ## Example 4: Create a RESTful API endpoint to retrieve external data
 
 - **Module:** ex4_rest
-- **URL:** http://[nodejs_www]/app.js
+- **URL:** http://127.0.0.1:8081/
 
 This example demonstrates how you can use Drupal in a bodiless AND headless way. Drupal provides the RESTful API endpoint to retrieve data from an external MySQL database. The sample node.js application is the front end which consumes the Drupal RESTful API endpoint via a GET call.
 
@@ -91,11 +91,11 @@ This example demonstrates how you can use Drupal in a bodiless AND headless way.
 ```
 Before installing the module
 ----------------------------
-1. Ensure you have enabled the RESTful Web Services module.
+1. Enable the RESTful Web Services module.
 
-2. Install the HTTP Basic Authentication module.
+2. Enable the HTTP Basic Authentication module.
 
-2. Download and install the REST UI module:
+2. Download and enable the REST UI module:
 https://www.drupal.org/project/restui
 
 3. You will need to modify your settings.php configuration file
@@ -114,25 +114,42 @@ $databases['govcon']['default'] = array(
   'prefix' => '',
   'collaction' => 'utf8mb4_general_ci',
 );
+
+4. Modify your hosts file (C:\Windows\System32\drivers\etc\hosts)
+to map 127.0.0.1 to your Drupal instance, if running locally. For
+example, my hosts file has a reference like below:
+
+127.0.0.1	govcon2017.localhost
 ```
 
 ### Setup
 
+*Drupal > Admin > Extend*
+
 - Open the REST UI configuration page: /admin/config/services/rest
 - Scroll down to "External data resource"
 - Click the "Enable" button
+
+*Drupal > Admin > Configuration > REST*
+
 - Settings:
   - Granularity: Resource
   - Methods: GET (tick the checkbox)
   - Accepted request formats: json (tick the checkbox)
   - Authentication providers: basic_auth (tick the checkbox)
   - Submit configuration
-- Go to the Permissions management page: /admin/people/permissions
+
+*Drupal > Admin > People > Permissions*
+
 - Scroll down to "Access GET on External data resource resource", under RESTful Web Services
 - Tick the checkbox under "Anonymous User"
 - Save permissions
-- Copy the app.js file under `node_js` to another location on your computer
-- Modify lines 16 & 17 of app.js to reflect your Drupal environment.
+
+*Other general setup steps*
+
+- Modify lines 16 & 17 of [drupal_custom_modules]/node_js/app.js to reflect your Drupal environment
+- Copy the app.js file to another location on your computer
+- Open a command prompt/terminal and change the directory to the directory where you placed app.js
 - Execute the script: node app.js
 - Point your web browser at http://127.0.0.1:8081/
 - If you set up everything correctly, you should see the following output:
