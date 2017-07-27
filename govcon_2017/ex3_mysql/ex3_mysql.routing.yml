@@ -1,4 +1,4 @@
-ex1_flatfile.read:
+ex3_mysql.read:
   path: '/ex3_mysql'
   defaults:
     _title: 'Example 3: Retrieve data from an external MySQL database'
