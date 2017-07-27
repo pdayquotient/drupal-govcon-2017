@@ -154,11 +154,7 @@ example, my hosts file has a reference like below:
 - Point your web browser at http://127.0.0.1:8081/
 - If you set up everything correctly, you should see the following output:
 
-GET result:
-
-{"id":"1","fname":"Paul","lname":"Day","email":"pday@quotient-inc.com"}
-
-Call completed
+`{"id":"1","fname":"Paul","lname":"Day","email":"pday@quotient-inc.com"}`
 
 ## Example 5: Auto-generate Drupal form based on a JSON schema
 
