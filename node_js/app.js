@@ -13,8 +13,8 @@ http.createServer(function(request, response) {
 
   // Prepare the request to get user #1
   var optionsget = {
-    host : 'govcon2017.dd', // Only the domain name - no http/https!
-    port : 8083,            // Whatever port Drupal listens to
+    host : 'govcon2017.localhost',  // Only the domain name - no http/https!
+    port : 8080,                    // Whatever port Drupal listens to
     path : '/ex4_rest/1?_format=json',
     method : 'GET'
   };
@@ -22,9 +22,7 @@ http.createServer(function(request, response) {
   // Execute the request
   var reqGet = http.request(optionsget, function(res) {
     res.on('data', function(d) {
-      console.info('GET result:\n');
-      process.stdout.write(d);
-      console.info('\n\nCall completed');
+      response.write(d.toString());
     });
   });
   reqGet.end();
