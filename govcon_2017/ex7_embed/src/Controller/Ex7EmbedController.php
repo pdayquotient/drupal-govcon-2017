@@ -1,9 +1,13 @@
 <?php
 /**
  * @file
- * Contains \Drupal\ex7_embed\Controller\Ex7JsonFormsController.
+ * Contains \Drupal\ex7_embed\Controller\Ex7EmbedController.
  *
  * Controller for example fields and formatters.
+ *
+ * Props to
+ * https://www.drupal.org/docs/8/api/entity-api/upgrading-code-snippets-module-to-drupal-8-creating-a-custom-field
+ * https://capgemini.github.io/drupal/writing-custom-fields-in-drupal-8/
  */
 
 namespace Drupal\ex7_embed\Controller;
@@ -15,7 +19,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Drupal\Component\Utility\Unicode;
 use Drupal;
 
-class Ex7JsonFormsController extends ControllerBase {
+class Ex7EmbedController extends ControllerBase {
 
 
   /**
@@ -29,21 +33,18 @@ class Ex7JsonFormsController extends ControllerBase {
    */
   public function user_autocomplete(Request $request) {
 
-    //@todo get from external JSON data
-
-    $matches = array('pday' => array('username' => 'pday', 'fullname' => 'Paul Day', 'email' => 'pday@quotient-inc.com'),
-      'rbartlett' => array('username' => 'rbartlett', 'fullname' => 'Rebecca Bartlett', 'email' => 'rbartlett@quotient-inc.com'));
-/*    $matches = array();
     $string = $request->query->get('q');
+    dpm($string);
     if ($string) {
-      $countries = \Drupal::service('country_manager')->getList();
-      foreach ($countries as $iso2 => $country) {
-        if (strpos(Unicode::strtolower($country), Unicode::strtolower($string)) !== FALSE) {
-          $matches[] = array('value' => $country, 'label' => $country);
+      $exampleusers = getExampleUsersList();
+      foreach ($exampleusers as $email => $name) {
+        $all_data = $email . ' ' . $name;
+        if (strpos(Unicode::strtolower($all_data), Unicode::strtolower($string)) !== FALSE) {
+          $matches[] = array('value' => $email, 'label' => $name);
         }
       }
     }
-*/
+
     return new JsonResponse($matches);
   }
 

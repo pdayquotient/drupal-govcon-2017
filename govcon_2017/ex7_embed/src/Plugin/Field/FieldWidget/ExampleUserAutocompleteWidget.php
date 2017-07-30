@@ -29,7 +29,7 @@ class ExampleUserAutocompleteWidget extends WidgetBase {
   }
 
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $exampleusers = \Drupal\ex7_embed\Controller\Ex7EmbedController\getExampleUsersList();
+    $exampleusers = getExampleUsersList();
     $element['value'] = $element + array(
         '#type' => 'textfield',
         '#default_value' =>  (isset($items[$delta]->value) && isset($exampleusers[$items[$delta]->value])) ? $exampleusers[$items[$delta]->value] : '',
@@ -38,7 +38,7 @@ class ExampleUserAutocompleteWidget extends WidgetBase {
         '#size' => $this->getSetting('size'),
         '#placeholder' => $this->getSetting('placeholder'),
         '#maxlength' => 255,
-        '#element_validate' => array('exampleuser_autocomplete_validate'),
+        //'#element_validate' => array('exampleuser_autocomplete_validate'),
       );
     return $element;
   }

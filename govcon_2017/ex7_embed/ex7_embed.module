@@ -62,15 +62,20 @@ function getExampleUsersList($val = NULL) {
   $json_in = sendRequest('http://' . $host . ':' . $port . '/ex2_json');
 
   $json = json_decode($json_in);
-  $json_matches = $json;
 
+  $json_matches = array();
   if(NULL !== $val) {
-    $json_matches = array();
-    foreach($json as $k => $v) {
-      //@todo find matches only
-      if(strpos($k, $val) !== FALSE) {
-        $json_matches[$k] = $v;
+    foreach($json->data as $k => $v) {
+      // find matches only
+      $all_user_string = $v->id . ' ' . $v->fname . ' ' . $v->lname . ' ' . $v->email;
+      if(strpos($all_user_string, $val) !== FALSE) {
+        $json_matches[$v->email] = $v->fname . ' ' . $v->lname;
       }
+    }
+  }
+  else {
+    foreach($json->data as $k => $v) {
+      $json_matches[$v->email] = $v->fname . ' ' . $v->lname;
     }
   }
 
