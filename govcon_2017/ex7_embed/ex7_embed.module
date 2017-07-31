@@ -7,9 +7,9 @@
 
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 function ex7_embed_theme($existing, $type, $theme, $path) {
-
   $display_templates['ex7_embed_user_template'] = array(
     'variables' => array(
       'data' => array(),
@@ -19,7 +19,6 @@ function ex7_embed_theme($existing, $type, $theme, $path) {
   );
 
   return $display_templates;
-
 }
 
 /**
@@ -42,8 +41,8 @@ function ex7_embed_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.ex7_embed':
       $output = '';
-      $output .= '&lt;h3&gt;' . t('Example 7 - Embed Content') . '&lt;/h3&gt;';
-      $output .= '&lt;p&gt;' . t('This module defines a simple example user type for the Field module, allowing users to "embed" external example user data within nodes. It provides 2 widgets - select options and autocomplete textfield - for this purpose.  See the &lt;a href="!field-help">Field module help page&lt;/a&gt; for more information about fields.', array('!field-help' => url('admin/help/field_ui'))) . '&lt;/p&gt;';
+      $output .= '<h3>' . t('Example 7 - Embed Content') . '</h3>';
+      $output .= '<p>' . t('This module defines a simple example user type for the Field module, allowing users to "embed" external example user data within nodes. It provides 2 widgets - select options and autocomplete textfield - for this purpose.  See the <a href="!field-help">Field module help page</a> for more information about fields.', array('!field-help' => Url::fromUri('internal:/admin/help/field_ui'))) . '</p>';
       return $output;
   }
 }
@@ -82,14 +81,14 @@ function getExampleUsersList($val = NULL) {
   return $json_matches;
 }
 
-function sendRequest($endpoint, $POST = FALSE, &$info) {
-
+function sendRequest($endpoint, $POST = FALSE) {
   $ch = curl_init();
 
   if ($POST === TRUE) {
     curl_setopt($ch, CURLOPT_URL, $endpoint);
     curl_setopt($ch, CURLOPT_POST, 1);
-  } else {
+  }
+  else {
     curl_setopt($ch, CURLOPT_URL, $endpoint);
   }
 
