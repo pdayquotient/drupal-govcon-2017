@@ -33,14 +33,15 @@ class Ex6JsonFileController extends ControllerBase {
     ];
   }
 
-  public function sendRequest($endpoint, $POST = FALSE, &$info) {
+  public function sendRequest($endpoint, $POST = FALSE) {
 
     $ch = curl_init();
 
     if ($POST === TRUE) {
       curl_setopt($ch, CURLOPT_URL, $endpoint);
       curl_setopt($ch, CURLOPT_POST, 1);
-    } else {
+    }
+    else {
       curl_setopt($ch, CURLOPT_URL, $endpoint);
     }
 
@@ -53,7 +54,8 @@ class Ex6JsonFileController extends ControllerBase {
 
     if ($info['http_code'] == 200) {
       $this->valid_request = TRUE;
-    } else {
+    }
+    else {
       $this->valid_request = FALSE;
     }
 
