@@ -32,9 +32,7 @@ class Ex7EmbedController extends ControllerBase {
    *   A JSON response containing the autocomplete suggestions for example users.
    */
   public function user_autocomplete(Request $request) {
-
     $string = $request->query->get('q');
-    dpm($string);
     if ($string) {
       $exampleusers = getExampleUsersList();
       foreach ($exampleusers as $email => $name) {
