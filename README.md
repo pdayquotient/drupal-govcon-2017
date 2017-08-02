@@ -73,7 +73,7 @@ $databases['govcon']['default'] = array(
   'port' => '3306',
   'driver' => 'mysql',
   'prefix' => '',
-  'collaction' => 'utf8mb4_general_ci',
+  'collation' => 'utf8mb4_general_ci',
 );
 ```
 
@@ -112,7 +112,7 @@ $databases['govcon']['default'] = array(
   'port' => '3306',
   'driver' => 'mysql',
   'prefix' => '',
-  'collaction' => 'utf8mb4_general_ci',
+  'collation' => 'utf8mb4_general_ci',
 );
 
 4. Modify your hosts file (C:\Windows\System32\drivers\etc\hosts)
